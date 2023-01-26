@@ -18,7 +18,7 @@ If you use our data, please also cite [ABO](https://arxiv.org/abs/2110.06199), [
 
 ## Acknowledgement
 
-- Our codebase builds heavily on https://github.com/lucidrains/DALLE-pytorch. We appreciate [lucidrains](https://github.com/lucidrains) for open-sourcing.
+- Our codebase builds heavily on https://github.com/lucidrains/DALLE-pytorch. 
 - We follow this [script](https://github.com/zekunhao1995/PointFlowRenderer) to render our point clouds with [Misuba](http://www.mitsuba-renderer.org/).
 
 ## BibTex
