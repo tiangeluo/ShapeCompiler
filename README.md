@@ -9,7 +9,15 @@ Our [shape, structural description] paired data is stored under `/data` as pickl
 If you use our data, please also cite [ABO](https://arxiv.org/abs/2110.06199), [ShapeNet](https://arxiv.org/abs/1512.03012), [Text2Shape](Text2Shape: Generating Shapes from Natural Language by Learning Joint Embeddings), and [ShapeGlot](https://arxiv.org/abs/1905.02925).
 
 
+
+## Other Interesting Ideas
+
+- Text->3D: [Text2Shape](http://text2shape.stanford.edu/), [DreamFusion](https://dreamfusion3d.github.io/), [DreamField](https://ajayj.com/dreamfields), [Shape IMLE](https://github.com/liuzhengzhe/Towards-Implicit-Text-Guided-Shape-Generation), [CLIP-Forge](https://github.com/AutodeskAILab/Clip-Forge)
+
+- 3D->Program: [Shape Program](http://shape2prog.csail.mit.edu/)
+
 ## Acknowledgement
+
 - Our codebase builds heavily on https://github.com/lucidrains/DALLE-pytorch. We appreciate [lucidrains](https://github.com/lucidrains) for open-sourcing.
 - We follow this [script](https://github.com/zekunhao1995/PointFlowRenderer) to render our point clouds with [Misuba](http://www.mitsuba-renderer.org/).
 
@@ -23,4 +31,3 @@ If you use our data, please also cite [ABO](https://arxiv.org/abs/2110.06199), [
       year = {2022},
 }
 ```
-
