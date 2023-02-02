@@ -24,9 +24,9 @@ If you use our data, please also cite [ABO](https://arxiv.org/abs/2110.06199), [
 - We follow this [script](https://github.com/zekunhao1995/PointFlowRenderer) to render our point clouds with [Misuba](http://www.mitsuba-renderer.org/).
 
 ## BibTex
+If our work helps your research, we are happy to receive a citation.
 
 ```
-If our work helps your research, we are happy to receive a citation.
 @article{luo2022neural,
       author = {Luo, Tiange and Lee, Honglak and Johnson, Justin},
       title = {Neural Shape Compiler: A Unified Framework for Transforming between Text, Point Cloud, and Program},
