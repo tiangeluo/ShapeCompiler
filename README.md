@@ -24,7 +24,7 @@ If you use our data, please also cite [ABO](https://arxiv.org/abs/2110.06199), [
 - We follow this [script](https://github.com/zekunhao1995/PointFlowRenderer) to render our point clouds with [Misuba](http://www.mitsuba-renderer.org/).
 
 ## BibTex
-If our work helps your research, we are happy to receive a citation.
+If you find our work or repo helpful, we are happy to receive a citation.
 
 ```
 @article{luo2022neural,
