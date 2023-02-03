@@ -29,9 +29,9 @@ If you find our work or repo helpful, we are happy to receive a citation.
 
 ```
 @article{luo2022neural,
-      author = {Luo, Tiange and Lee, Honglak and Johnson, Justin},
-      title = {Neural Shape Compiler: A Unified Framework for Transforming between Text, Point Cloud, and Program},
-      journal = {Workshop on Learning to Generate 3D Shapes and Scenes at ECCV},
-      year = {2022},
+      title={Neural Shape Compiler: A Unified Framework for Transforming between Text, Point Cloud, and Program},
+      author={Luo, Tiange and Lee, Honglak and Johnson, Justin},
+      journal={arXiv preprint arXiv:2212.12952},
+      year={2022}
 }
 ```
