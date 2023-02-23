@@ -21,6 +21,7 @@ If you use our data, please also cite [ABO](https://arxiv.org/abs/2110.06199), [
 ## Acknowledgement
 We thank the below open-resource projects and codes.
 
+- [PyTorch](https://www.github.com/pytorch/pytorch) and [PyTorch3D](https://github.com/facebookresearch/pytorch3d).
 - Our codebase builds heavily on https://github.com/lucidrains/DALLE-pytorch. 
 - We follow this [script](https://github.com/zekunhao1995/PointFlowRenderer) to render our point clouds with [Misuba](http://www.mitsuba-renderer.org/).
 
