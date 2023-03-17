@@ -21,7 +21,7 @@ There are several steps to do before running:
 1. running `bash compiler.sh` to install some CUDA extensions for PointVQVAE
 2. install `Pytorch3D` by following steps provided in https://pytorch3d.org/
 3. `python setup.py install`
-4. download pre-trained model `shapecompiler.pt` from [GoogleDrive](https://drive.google.com/file/d/1Gbq8u1NjCOSgHtsvAytiuunFro86bwzf/view?usp=share_link) , and move it into `ShapeCompiler/outputs/shapecompiler_models`
+4. download pre-trained model `shapecompiler.pt` from [GoogleDrive](https://drive.google.com/file/d/1Y__4AIMmrM9ECasWw5w0qJiE_DjxjmwW/view?usp=sharing) , and move it into `ShapeCompiler/outputs/shapecompiler_models`
 
 ## Inference
 
