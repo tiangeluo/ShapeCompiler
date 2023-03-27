@@ -52,7 +52,7 @@ python generate_pgm_condpts.py --model_path ./shapecompiler.pt --pts_path './ass
 
 - Text->3D: [Text2Shape](http://text2shape.stanford.edu/), [DreamFusion](https://dreamfusion3d.github.io/), [DreamField](https://ajayj.com/dreamfields), [Shape IMLE](https://github.com/liuzhengzhe/Towards-Implicit-Text-Guided-Shape-Generation), [CLIPForge](https://github.com/AutodeskAILab/Clip-Forge), [Magic3D](https://deepimagination.cc/Magic3D/), [ShapeCrafter](https://arxiv.org/abs/2207.09446), [Shape2VecSet](https://arxiv.org/abs/2301.11445)
 
-- 3D->Program: [ShapeProgram](http://shape2prog.csail.mit.edu/), [ShapeAssembly](https://github.com/rkjones4/ShapeAssembly)
+- 3D->Program: [ShapeProgram](http://shape2prog.csail.mit.edu/), [ShapeAssembly](https://github.com/rkjones4/ShapeAssembly), [LegoAssembly](https://cs.stanford.edu/~rcwang/projects/lego_manual/)
 
 - 3D->Text: [Scan2cap](https://arxiv.org/abs/2012.02206)
 
