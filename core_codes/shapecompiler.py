@@ -18,7 +18,7 @@ import torch.nn as nn
 import sys
 from IPython import embed
 
-sys.path.insert(0, '/home/tiangel/Learning-to-Group')
+sys.path.insert(0, '..')
 from shaper.models.pointnet2.modules import PointNetSAModule, PointnetFPModule
 
 def set_bn(module, momentum):
@@ -903,7 +903,7 @@ class ShapeCompiler(nn.Module):
 
                     # loss_pg1 = F.cross_entropy(pg_logits[:,512:512+21,self.pts_seq_len:][:,:,pgm_idx], pg_code[:, pgm_idx])
                     # loss_pg2 = F.cross_entropy(pg_logits[:,512+21:,self.pts_seq_len:][:,:,param_idx], pg_code[:, param_idx])
-                    loss_pg = loss_pg1 + 3*loss_pg2
+                    loss_pg = loss_pg1 + 0.2*loss_pg2
                     # loss_pg = (loss_pg1 + 5*loss_pg2)/6
 
                 else:
