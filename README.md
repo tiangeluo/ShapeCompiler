@@ -1,6 +1,6 @@
 # Neural Shape Compiler: A Unified Framework for Transforming between Text, Point Cloud, and Program
 
-In this repo, we release our data, codes, and pre-trained models for this Neural Shape Compiler [project](https://tiangeluo.github.io/projectpages/shapecompiler.html). 
+In this repo, we release our data, codes, and pre-trained models for this Neural Shape Compiler [[project page](https://tiangeluo.github.io/projectpages/shapecompiler.html)]. 
 
 
 
