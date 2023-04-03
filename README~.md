@@ -18,7 +18,7 @@ If you use our data, please also cite [ABO](https://arxiv.org/abs/2110.06199), [
 
 There are several steps to do before running:
 
-0. `git clone --recurse-submodules https://github.com/tiangeluo/ShapeCompiler.git`
+0. 
 
 1. running `bash compiler.sh` to install some CUDA extensions for PointVQVAE
 2. install `Pytorch3D` by following steps provided in https://pytorch3d.org/
