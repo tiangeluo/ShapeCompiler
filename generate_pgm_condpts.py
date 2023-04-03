@@ -1,32 +1,18 @@
 import argparse
 from pathlib import Path
 from tqdm import tqdm
-
-# torch
-
 import torch
-
 from einops import repeat
 
-# vision imports
-
-from PIL import Image
-from torchvision.utils import make_grid, save_image
-
-# dalle related classes and utils
-
 from core_codes.shapecompiler import PointVQVAE, ShapeCompiler
-from core_codes.tokenizer import tokenizer
 from IPython import embed
 import os
 from pytorch3d.io import save_ply, load_ply
 
 import sys
-sys.path.insert(0, '/home/tiangel/DALLE_3D/Learning-to-Group')
-from shaper.models.pointnet2.modules import PointNetSAModule, PointnetFPModule
-
-import torch.nn.functional as F
-# argument parsing
+sys.path.append('./shape2prog')
+from misc import execute_shape_program
+import h5py
 
 parser = argparse.ArgumentParser()
 
@@ -126,6 +112,27 @@ save_obj = {
     'pgm': out_pgm,
     'param': out_param,
 }
+torch.save(save_obj, os.path.join(save_dir,'generated_program_parameters.pt'))
+save_ply(os.path.join(save_dir,'input.ply'), pc[0])
+
+out_pgms = out_pgm.cpu().numpy()
+out_params = out_param.cpu().numpy()
+num_shapes = out_pgms.shape[0]
+res=[]
+for i in range(num_shapes):
+    try:
+        data = execute_shape_program(out_pgms[i], out_params[i])
+    except:
+        print('render program wrong', i)
+        continue
+    res.append(data.reshape((1, 32, 32, 32)))
+if len(res) == 0:
+    print('All generated programs failed.')
+else:
+    # [batch_size, 32, 32, 32]
+    h5_file = h5py.File(os.path.join(save_dir,'generated_voxel.h5'), 'w')
+    h5_file['voxel'] = torch.cat(res)
+    h5_file.close()
+
+
 print('save_dir:%s'%save_dir)
-torch.save(save_obj, os.path.join(save_dir,'generated_pgms.pt'))
-save_ply(os.path.join(save_dir,'%04d'%0+'_ori.ply'), pc[0])
