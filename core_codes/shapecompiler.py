@@ -15,10 +15,12 @@ from dalle_pytorch.transformer import Transformer, DivideMax
 import torch
 import torch.nn as nn
 
-import sys
 from IPython import embed
 
-sys.path.insert(0, '..')
+import sys
+import os
+parent_dir = os.path.dirname(os.getcwd())
+sys.path.append(parent_dir)
 from shaper.models.pointnet2.modules import PointNetSAModule, PointnetFPModule
 
 def set_bn(module, momentum):
