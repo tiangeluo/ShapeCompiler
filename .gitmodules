@@ -1,0 +1,3 @@
+[submodule "shape2prog"]
+    path = shape2prog
+    url = https://github.com/HobbitLong/shape2prog.git
