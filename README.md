@@ -41,9 +41,8 @@ python generate_text_condpts.py --model_path ./shapecompiler.pt --pts_path './as
 # you can add flag --inverse in your command line to conduct pc[:,2] = -1*pc[:,2] 
 # if you are not confident if the shape orientation is correct, please visualize ./assets/example_chair.ply
 
-# to generate programs confitional on point clouds
-# results will be saved in ./outputs/shapecompiler_outputs/pts2pgm_test1
-# the code to print out programs and visualize the red voxels will be released later
+# to generate programs conditional on point clouds
+# generated program parameters, program text, voxels, and extracted point clouds will be saved in ./outputs/shapecompiler_outputs/pts2pgm_test1
 python generate_pgm_condpts.py --model_path ./shapecompiler.pt --pts_path './assets/example_chair.ply' --save_name 'test1' 
 
 ```
