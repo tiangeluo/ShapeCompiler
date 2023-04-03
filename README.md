@@ -48,6 +48,17 @@ python generate_pgm_condpts.py --model_path ./shapecompiler.pt --pts_path './ass
 
 
 
+## Pre-trained checkpoints
+
+| Description                                                  | Link                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Shape Compiler, training with all the data mentioned in paper | [Download (1.49GB)](https://drive.google.com/file/d/1Y__4AIMmrM9ECasWw5w0qJiE_DjxjmwW/view?usp=sharing) |
+| PointVQVAE, training with ABO, ShapeNet, Program objects     | [Download (107.3 MB)](https://drive.google.com/file/d/1Y1PSnSukRwub1tJRix4NEO3_aKl-Xx65/view?usp=share_link) |
+| PointVQVAE, training with ShapeNet objects                   | Stay Tuned                                                   |
+| PointVQVAE, training with ABO, ShapeNet, Program, Objaverse objects | Stay Tuned                                                   |
+
+
+
 ## Other Interesting Ideas
 
 - Text->3D: [Text2Shape](http://text2shape.stanford.edu/), [DreamFusion](https://dreamfusion3d.github.io/), [DreamField](https://ajayj.com/dreamfields), [Shape IMLE](https://github.com/liuzhengzhe/Towards-Implicit-Text-Guided-Shape-Generation), [CLIPForge](https://github.com/AutodeskAILab/Clip-Forge), [Magic3D](https://deepimagination.cc/Magic3D/), [ShapeCrafter](https://arxiv.org/abs/2207.09446), [Shape2VecSet](https://arxiv.org/abs/2301.11445), [MeshDiffusion](https://openreview.net/pdf?id=0cpM2ApF9p6)
