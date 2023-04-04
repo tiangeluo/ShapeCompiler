@@ -27,9 +27,21 @@ There are several steps to do before running:
 
 2. install [PyTorch](https://pytorch.org/get-started/locally/) and [PyTorch3D](https://pytorch3d.org/)
 
+   ```sh
+   #my install commands
+   pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
+   
+   conda install -c fvcore -c iopath -c conda-forge fvcore iopath
+   conda install -c bottler nvidiacub
+   pip install "git+https://github.com/facebookresearch/pytorch3d.git"
+   ```
+
+   
+
 3. ```sh
    cd ShapeCompiler
    python setup.py install
+   #my gcc version is 8.2.0
    bash compile.sh
    ```
 
