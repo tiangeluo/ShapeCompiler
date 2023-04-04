@@ -5,9 +5,7 @@
 #include <cmath>
 
 #include <ATen/ATen.h>
-//#include <THC/THC.h>
-#include <ATen/cuda/CUDAContext.h>
-#include <torch/extension.h>
+#include <THC/THC.h>
 
 // NOTE: AT_ASSERT has become AT_CHECK on master after 0.4.
 #define CHECK_CUDA(x) AT_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor")
@@ -133,9 +131,9 @@ at::Tensor FarthestPointSample(
 
 	// Sanity check
 	// CHECK_CUDA(points);
-	// CHECK_EQ(points.size(1), 3);
-  // CHECK_GT(num_centroids, 0);
-  // CHECK_GE(num_points, num_centroids);
+	CHECK_EQ(points.size(1), 3);
+  CHECK_GT(num_centroids, 0);
+  CHECK_GE(num_points, num_centroids);
 	
   auto points_trans = points.transpose(1, 2).contiguous();  // (B, N1, 3)
   auto index = at::zeros({batch_size, num_centroids}, points.type().toScalarType(at::kLong));
@@ -165,9 +163,7 @@ at::Tensor FarthestPointSample(
     }));
   }
 
-  //THCudaCheck(cudaGetLastError());
-  auto err = cudaGetLastError();
-  TORCH_CHECK(err == cudaSuccess, "CUDA error: ", cudaGetErrorString(err));
+  THCudaCheck(cudaGetLastError());
   
   return index;
 }

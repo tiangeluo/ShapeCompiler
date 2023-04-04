@@ -6,8 +6,6 @@
 #include <ATen/cuda/CUDAApplyUtils.cuh>  // at::cuda::getApplyGrid
 #include <ATen/cuda/detail/TensorInfo.cuh>
 #include <ATen/cuda/detail/IndexUtils.cuh>
-#include <ATen/cuda/CUDAContext.h>
-#include <torch/extension.h>
 
 // NOTE: AT_ASSERT has become AT_CHECK on master after 0.4.
 #define CHECK_CUDA(x) AT_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor")
@@ -37,9 +35,9 @@ at::Tensor GroupPointsForward(
   // Sanity check
   // CHECK_CUDA(input);
   // CHECK_CUDA(index);
-  // CHECK_EQ(input.dim(), 3);
-  // CHECK_EQ(index.dim(), 3);
-  // CHECK_EQ(index.size(0), batch_size);
+  CHECK_EQ(input.dim(), 3);
+  CHECK_EQ(index.dim(), 3);
+  CHECK_EQ(index.size(0), batch_size);
 
   auto input_expand = input.unsqueeze(2).expand({batch_size, channels, num_select, num_inst});  // (B, C, N2, N1)
   auto index_expand = index.unsqueeze(1).expand({batch_size, channels, num_select, k});  // (B, C, N2, K)
@@ -111,11 +109,11 @@ at::Tensor GroupPointsBackward(
   // Sanity check
   //CHECK_CUDA(grad_output);
   //CHECK_CUDA(index);
-  //CHECK_EQ(grad_output.dim(), 4);
-  //CHECK_EQ(index.dim(), 3);
-  //CHECK_EQ(index.size(0), batch_size);
-  //CHECK_EQ(index.size(1), num_select);
-  //CHECK_EQ(index.size(2), k);
+  CHECK_EQ(grad_output.dim(), 4);
+  CHECK_EQ(index.dim(), 3);
+  CHECK_EQ(index.size(0), batch_size);
+  CHECK_EQ(index.size(1), num_select);
+  CHECK_EQ(index.size(2), k);
 
   // Allocate new space for output
   auto grad_input = at::zeros({batch_size, channels, num_points}, grad_output.type());
@@ -128,9 +126,7 @@ at::Tensor GroupPointsBackward(
   dim3 grid;
   const int curDevice = at::cuda::current_device();
   // getApplyGrid: aten/src/ATen/cuda/CUDAApplyUtils.cuh
-  // THArgCheck(at::cuda::getApplyGrid(totalElements, grid, curDevice), 1, "Too many elements to calculate");
-  bool isValidGrid = at::cuda::getApplyGrid(totalElements, grid, curDevice);
-  TORCH_CHECK(isValidGrid, "Too many elements to calculate");
+  THArgCheck(at::cuda::getApplyGrid(totalElements, grid, curDevice), 1, "Too many elements to calculate");
 
   AT_DISPATCH_FLOATING_TYPES(grad_output.type(), "GroupPointsBackward", ([&] {
     auto gradInputInfo = getTensorInfo<scalar_t, uint64_t>(grad_input);
@@ -144,9 +140,7 @@ at::Tensor GroupPointsBackward(
         (uint64_t)totalElements);
   }));
 
-  //THCudaCheck(cudaGetLastError());
-  auto err = cudaGetLastError();
-  TORCH_CHECK(err == cudaSuccess, "CUDA error: ", cudaGetErrorString(err));
+  THCudaCheck(cudaGetLastError());
 
   return grad_input;
 }
