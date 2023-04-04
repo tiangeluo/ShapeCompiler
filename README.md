@@ -6,13 +6,6 @@ In this repo, we release our data, codes, and pre-trained models for this Neural
 
 We released our data, model file, pre-trained model, and some of the inference codes. More inference codes, test codes and training codes are on the way. 
 
-## Data
-
-Our [shape, structural description] paired data is stored under `/data` as pickle files and be loaded via `data= pickle.load(open('abo_text_train.pkl','rb'))`. Each pickle file contains `num of indices` and `pcs_name`. You can accesee the text annotation by index (e.g., `data[10]`) and its correspondence point cloud file name (e.g., `data['pcs_name'][10]`). 
-
-If you use our data, please also cite [ABO](https://arxiv.org/abs/2110.06199), [ShapeNet](https://arxiv.org/abs/1512.03012), [Text2Shape](http://text2shape.stanford.edu/), and [ShapeGlot](https://arxiv.org/abs/1905.02925).
-
-
 
 ## Installation
 
@@ -80,7 +73,11 @@ python generate_pgm_condpts.py --model_path ./shapecompiler.pt --pts_path './ass
 | PointVQVAE, training with ShapeNet objects                   | Stay Tuned                                                   |
 | PointVQVAE, training with ABO, ShapeNet, Program, Objaverse objects | Stay Tuned                                                   |
 
+## Data
 
+Our [shape, structural description] paired data is stored under `/data` as pickle files and be loaded via `data= pickle.load(open('abo_text_train.pkl','rb'))`. Each pickle file contains `num of indices` and `pcs_name`. You can accesee the text annotation by index (e.g., `data[10]`) and its correspondence point cloud file name (e.g., `data['pcs_name'][10]`). 
+
+Please also cite [ABO](https://arxiv.org/abs/2110.06199), [ShapeNet](https://arxiv.org/abs/1512.03012), [Text2Shape](http://text2shape.stanford.edu/), and [ShapeGlot](https://arxiv.org/abs/1905.02925), if you use our caption data along with the objects provided in their datasets.
 
 ## Other Interesting Ideas
 
