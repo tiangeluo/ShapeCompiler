@@ -10,6 +10,8 @@
 #include <ATen/cuda/CUDAApplyUtils.cuh>
 #include <ATen/cuda/detail/TensorInfo.cuh>
 #include <ATen/cuda/detail/IndexUtils.cuh>
+#include <ATen/cuda/CUDAContext.h>
+#include <torch/extension.h>
 
 using at::cuda::detail::TensorInfo;
 using at::cuda::detail::getTensorInfo;
@@ -93,12 +95,12 @@ std::vector<at::Tensor> PointSearch(
   const auto num_key = key_xyz.size(2);
 
   // sanity check
-  CHECK_EQ(key_xyz.size(0), batch_size);
-  CHECK_EQ(query_xyz.size(1), 3);
-  CHECK_EQ(key_xyz.size(1), 3);
-  // Only support 3-nn
-  CHECK_EQ(num_neighbours, K);
-  CHECK_GE(num_key, num_neighbours);
+  //CHECK_EQ(key_xyz.size(0), batch_size);
+  //CHECK_EQ(query_xyz.size(1), 3);
+  //CHECK_EQ(key_xyz.size(1), 3);
+  //// Only support 3-nn
+  //CHECK_EQ(num_neighbours, K);
+  //CHECK_GE(num_key, num_neighbours);
   //CHECK_CUDA(query_xyz);
   //CHECK_CUDA(key_xyz);
 
@@ -121,7 +123,9 @@ std::vector<at::Tensor> PointSearch(
         num_key);
     }));
   
-  THCudaCheck(cudaGetLastError());
+  //THCudaCheck(cudaGetLastError());
+  auto err = cudaGetLastError();
+  TORCH_CHECK(err == cudaSuccess, "CUDA error: ", cudaGetErrorString(err));
   
   return std::vector<at::Tensor>({index, distance});
 }
@@ -193,11 +197,11 @@ at::Tensor InterpolateForward(
   const auto num_select = index.size(1);
 
   auto output = at::zeros({batch_size, channels, num_select}, input.type());
-  CHECK_EQ(index.size(0), batch_size);
-  CHECK_EQ(index.size(2), K);
-  CHECK_EQ(weight.size(0), batch_size);
-  CHECK_EQ(weight.size(1), num_select);
-  CHECK_EQ(weight.size(2), K);
+  //CHECK_EQ(index.size(0), batch_size);
+  //CHECK_EQ(index.size(2), K);
+  //CHECK_EQ(weight.size(0), batch_size);
+  //CHECK_EQ(weight.size(1), num_select);
+  //CHECK_EQ(weight.size(2), K);
   //CHECK_CUDA(input);
   //CHECK_CUDA(index);
   //CHECK_CUDA(weight);
@@ -209,7 +213,9 @@ at::Tensor InterpolateForward(
   dim3 grid;
   const int curDevice = at::cuda::current_device();
   // getApplyGrid: aten/src/ATen/cuda/CUDAApplyUtils.cuh
-  THArgCheck(at::cuda::getApplyGrid(totalElements, grid, curDevice), 1, "Too many elements to calculate");
+  //THArgCheck(at::cuda::getApplyGrid(totalElements, grid, curDevice), 1, "Too many elements to calculate");
+  bool isValidGrid = at::cuda::getApplyGrid(totalElements, grid, curDevice);
+  TORCH_CHECK(isValidGrid, "Too many elements to calculate");
 
   AT_DISPATCH_FLOATING_TYPES(input.type(), "InterpolateForward", ([&] {
     auto ouputInfo = getTensorInfo<scalar_t, uint64_t>(output);
@@ -225,7 +231,9 @@ at::Tensor InterpolateForward(
         (uint64_t)totalElements);
     }));
   
-  THCudaCheck(cudaGetLastError());
+  //THCudaCheck(cudaGetLastError());
+  auto err = cudaGetLastError();
+  TORCH_CHECK(err == cudaSuccess, "CUDA error: ", cudaGetErrorString(err));
 
   return output;
 }  
@@ -298,11 +306,11 @@ at::Tensor InterpolateBackward(
   const auto num_select = grad_output.size(2);
 
   auto grad_input = at::zeros({batch_size, channels, num_inst}, grad_output.type());
-  CHECK_EQ(index.size(0), batch_size);
-  CHECK_EQ(index.size(2), K);
-  CHECK_EQ(weight.size(0), batch_size);
-  CHECK_EQ(weight.size(1), num_select);
-  CHECK_EQ(weight.size(2), K);
+  //CHECK_EQ(index.size(0), batch_size);
+  //CHECK_EQ(index.size(2), K);
+  //CHECK_EQ(weight.size(0), batch_size);
+  //CHECK_EQ(weight.size(1), num_select);
+  //CHECK_EQ(weight.size(2), K);
   //CHECK_CUDA(grad_output);
   //CHECK_CUDA(index);
   //CHECK_CUDA(weight);
@@ -314,7 +322,9 @@ at::Tensor InterpolateBackward(
   dim3 grid;
   const int curDevice = at::cuda::current_device();
   // getApplyGrid: aten/src/ATen/cuda/CUDAApplyUtils.cuh
-  THArgCheck(at::cuda::getApplyGrid(totalElements, grid, curDevice), 1, "Too many elements to calculate");
+  //THArgCheck(at::cuda::getApplyGrid(totalElements, grid, curDevice), 1, "Too many elements to calculate");
+  bool isValidGrid = at::cuda::getApplyGrid(totalElements, grid, curDevice);
+  TORCH_CHECK(isValidGrid, "Too many elements to calculate");
 
   AT_DISPATCH_FLOATING_TYPES(grad_output.type(), "InterpolateBackward", ([&] {
     auto gradInputInfo = getTensorInfo<scalar_t, uint64_t>(grad_input);
@@ -330,7 +340,9 @@ at::Tensor InterpolateBackward(
         (uint64_t)totalElements);
   }));
 
-  THCudaCheck(cudaGetLastError());
+  //THCudaCheck(cudaGetLastError());
+  auto err = cudaGetLastError();
+  TORCH_CHECK(err == cudaSuccess, "CUDA error: ", cudaGetErrorString(err));
 
   return grad_input;
 }

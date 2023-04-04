@@ -18,11 +18,21 @@ If you use our data, please also cite [ABO](https://arxiv.org/abs/2110.06199), [
 
 There are several steps to do before running:
 
-0. `git clone --recurse-submodules https://github.com/tiangeluo/ShapeCompiler.git`
+1. ```sh
+   git clone --recurse-submodules https://github.com/tiangeluo/ShapeCompiler.git
+   
+   conda create --name shapecompiler python=3.8
+   conda activate shapecompiler
+   ```
 
-1. running `bash compiler.sh` to install some CUDA extensions for PointVQVAE
-2. install `Pytorch3D` by following steps provided in https://pytorch3d.org/
-3. `python setup.py install`
+2. install [PyTorch](https://pytorch.org/get-started/locally/) and [PyTorch3D](https://pytorch3d.org/)
+
+3. ```sh
+   cd ShapeCompiler
+   python setup.py install
+   bash compile.sh
+   ```
+
 4. download pre-trained model `shapecompiler.pt` from [GoogleDrive](https://drive.google.com/file/d/1Y__4AIMmrM9ECasWw5w0qJiE_DjxjmwW/view?usp=sharing) , and move it into `ShapeCompiler/outputs/shapecompiler_models`
 
 ## Inference

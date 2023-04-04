@@ -6,7 +6,10 @@
 #include <vector>
 
 #include <ATen/ATen.h>
-#include <THC/THC.h>
+#include <ATen/cuda/CUDAContext.h>
+#include <torch/extension.h>
+
+//include <THC/THC.h>
 
 // NOTE: AT_ASSERT has become AT_CHECK on master after 0.4.
 #define CHECK_CUDA(x) AT_CHECK(x.type().is_cuda(), #x " must be a CUDA tensor")
@@ -96,8 +99,8 @@ std::vector<at::Tensor> BallQuery(
   // Sanity check
   //CHECK_CUDA(points);
   //CHECK_CUDA(centroids);
-  CHECK_EQ(points.size(1), 3);
-  CHECK_EQ(centroids.size(1), 3);
+  //CHECK_EQ(points.size(1), 3);
+  //CHECK_EQ(centroids.size(1), 3);
   
   auto points_trans = points.transpose(1, 2).contiguous();  // (B, N1, 3)
   auto centroids_trans = centroids.transpose(1, 2).contiguous();  // (B, N2, 3)
@@ -124,7 +127,9 @@ std::vector<at::Tensor> BallQuery(
       num_neighbours);
   }));
 
-  THCudaCheck(cudaGetLastError());
+  //THCudaCheck(cudaGetLastError());
+  auto err = cudaGetLastError();
+  TORCH_CHECK(err == cudaSuccess, "CUDA error: ", cudaGetErrorString(err));
 
   return std::vector<at::Tensor>({index, count});
 }

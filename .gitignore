@@ -1,2 +1,11 @@
+# macos
 .DS_Store
 
+# compilation and distribution
+__pycache__
+_ext
+*.pyc
+*.so
+build/
+dist/
+*.egg-info/

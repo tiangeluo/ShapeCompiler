@@ -4,12 +4,10 @@ from torch import nn, einsum
 import torch.nn.functional as F
 import numpy as np
 
+from core_codes import distributed_utils
+from core_codes.transformer import Transformer
 from axial_positional_embedding import AxialPositionalEmbedding
 from einops import rearrange
-
-from dalle_pytorch import distributed_utils
-from dalle_pytorch.vae import OpenAIDiscreteVAE, VQGanVAE
-from dalle_pytorch.transformer import Transformer, DivideMax
 
 # helpers
 import torch
