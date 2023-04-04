@@ -9,7 +9,7 @@ We released our data, model file, pre-trained model, and some of the inference c
 
 ## Installation
 
-There are several steps to do before running:
+Please proceed 1~4 steps below:
 
 1. ```sh
    git clone --recurse-submodules https://github.com/tiangeluo/ShapeCompiler.git
@@ -18,10 +18,10 @@ There are several steps to do before running:
    conda activate shapecompiler
    ```
 
-2. install [PyTorch](https://pytorch.org/get-started/locally/) and [PyTorch3D](https://pytorch3d.org/)
+2. install [PyTorch](https://pytorch.org/get-started/locally/) and [PyTorch3D](https://pytorch3d.org/). 
 
    ```sh
-   #my install commands
+   # my install commands
    pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
    
    conda install -c fvcore -c iopath -c conda-forge fvcore iopath
@@ -34,11 +34,11 @@ There are several steps to do before running:
 3. ```sh
    cd ShapeCompiler
    python setup.py install
-   #my gcc version is 8.2.0
+   # my gcc version is 8.2.0 for compiling cuda operators
    bash compile.sh
    ```
 
-4. download pre-trained model `shapecompiler.pt` from [GoogleDrive](https://drive.google.com/file/d/1Y__4AIMmrM9ECasWw5w0qJiE_DjxjmwW/view?usp=sharing) , and move it into `ShapeCompiler/outputs/shapecompiler_models`
+4. download pre-trained model `shapecompiler.pt` from [GoogleDrive](https://drive.google.com/file/d/1Y__4AIMmrM9ECasWw5w0qJiE_DjxjmwW/view?usp=sharing) , and move it to `ShapeCompiler/outputs/shapecompiler_models`
 
 ## Inference
 
