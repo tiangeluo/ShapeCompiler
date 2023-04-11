@@ -93,7 +93,8 @@ With code: [ShapeProgram](http://shape2prog.csail.mit.edu/), [ShapeAssembly](htt
 
 No official code release: [ProgramViaImplicitPart](https://progrip-project.github.io/)
 
-- 3D->Text: [Scan2cap](https://arxiv.org/abs/2012.02206)
+- **3D->Text**
+With code: [Scan2cap](https://arxiv.org/abs/2012.02206)
 
 ## Acknowledgement
 We thank the below open-resource projects and codes.
