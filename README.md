@@ -85,7 +85,7 @@ Please also cite [ABO](https://arxiv.org/abs/2110.06199), [ShapeNet](https://arx
  
 With code: [Text2Shape](http://text2shape.stanford.edu/), [DreamField](https://ajayj.com/dreamfields), [Shape IMLE](https://github.com/liuzhengzhe/Towards-Implicit-Text-Guided-Shape-Generation), [CLIPForge](https://github.com/AutodeskAILab/Clip-Forge), [MeshDiffusion](https://openreview.net/pdf?id=0cpM2ApF9p6)
 
-No official code release: [DreamFusion](https://dreamfusion3d.github.io/),  [Magic3D](https://deepimagination.cc/Magic3D/), [ShapeCrafter](https://arxiv.org/abs/2207.09446), [Shape2VecSet](https://arxiv.org/abs/2301.11445), [3DGen](https://arxiv.org/abs/2303.05371)
+No official code release: [DreamFusion](https://dreamfusion3d.github.io/),  [Magic3D](https://deepimagination.cc/Magic3D/), [ShapeCrafter](https://arxiv.org/abs/2207.09446), [Shape2VecSet](https://arxiv.org/abs/2301.11445), [TAPS3D](https://arxiv.org/abs/2303.13273), [3DGen](https://arxiv.org/abs/2303.05371) 
 
 - **3D->Program**
  
