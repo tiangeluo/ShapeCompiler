@@ -380,6 +380,7 @@ class PointVQVAE(nn.Module):
         #     return loss, out, perplexity
         # else:
         #     return loss, cd_loss, emd_loss, vq_loss, out, perplexity
+
 def decode_pgcode2(pg_codes):
     # params [-27, 29] to --> [0, 56]
     # pgms [0, 20] to --> [57, 77]
@@ -390,6 +391,31 @@ def decode_pgcode2(pg_codes):
     params_idx = torch.arange(240)[indicator == 1]
 
     return (pg_codes[:, pgm_idx]- 57, pg_codes[:, params_idx] - 27)
+
+def map_pgcode(pgms, params):
+    # params [-27, 29] to --> [0, 56]
+    # pgms [0, 20] to --> [57, 77]
+    params2 = (params+27).type(torch.int)
+    pgms2 = pgms + 57
+    bs = params2.shape[0]
+    return torch.cat((pgms2.reshape(bs,-1), params2.reshape(bs, -1)), -1)
+
+def map_pgcode2(pgms, params):
+    #Chair
+    # params [-27, 29] to --> [0, 56]
+    # pgms [0, 20] to --> [57, 77]
+    #Table
+    # params [-12, 24] +27 --> [15, 51]
+    # pgms [0, 20] +57--> [57, 77]
+    # Fuse two
+    bs = params.shape[0]
+    pgm_idx = (torch.arange(30)*8)
+    indicator = torch.ones(240)
+    indicator[pgm_idx] = 0
+    params_idx = torch.arange(240)[indicator == 1]
+    placeholder = torch.zeros(bs, 240).type(torch.LongTensor).cuda()
+    placeholder[:,pgm_idx] = pgms.reshape(bs, -1) + 57
+    placeholder[:,params_idx] = (params+27).type(torch.LongTensor).reshape(bs,-1).cuda()
 
 class ShapeCompiler(nn.Module):
     def __init__(
