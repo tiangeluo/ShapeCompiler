@@ -109,10 +109,14 @@ We thank the below open-resource projects and codes.
 If you find our work or repo helpful, we are happy to receive a citation.
 
 ```
-@article{luo2022neural,
-      title={Neural Shape Compiler: A Unified Framework for Transforming between Text, Point Cloud, and Program},
-      author={Luo, Tiange and Lee, Honglak and Johnson, Justin},
-      journal={arXiv preprint arXiv:2212.12952},
-      year={2022}
+@article{
+  luo2023neural,
+  title={Neural Shape Compiler: A Unified Framework for Transforming between Text, Point Cloud, and Program},
+  author={Tiange Luo and Honglak Lee and Justin Johnson},
+  journal={Transactions on Machine Learning Research},
+  issn={2835-8856},
+  year={2023},
+  url={https://openreview.net/forum?id=gR9UVgH8PZ},
+  note={}
 }
 ```
